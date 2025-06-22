@@ -92,7 +92,7 @@ export default function SpaceOwnerDashboard() {
           </p>
 
           <button
-            onClick={() => navigate('/list-your-space')}
+            onClick={() => navigate('/list-space')}
             className="mt-6 bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition"
           >
             + List a New Space

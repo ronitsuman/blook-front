@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000/api', // Replace with your actual base URL
+  baseURL: import.meta.env.VITE_BACKEND_URL || 'https://blook-back.onrender.com/api', // Replace with your actual base URL
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
