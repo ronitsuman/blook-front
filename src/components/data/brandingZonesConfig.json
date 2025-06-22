@@ -1,0 +1,236 @@
+{
+  "Retail Spaces / Shops / Showrooms": [
+    {
+      "id": "shop-front-board",
+      "label": "Shop Front Board"
+    },
+    {
+      "id": "entry-glass-window-branding",
+      "label": "Entry Glass/Window Branding"
+    },
+    {
+      "id": "inside-empty-walls",
+      "label": "Inside Empty Walls"
+    },
+    {
+      "id": "billing-counter-space",
+      "label": "Billing Counter Space"
+    },
+    {
+      "id": "floors-steps",
+      "label": "Floors / Steps"
+    },
+    {
+      "id": "product-shelves",
+      "label": "Product Shelves"
+    },
+    {
+      "id": "ceiling-hangings",
+      "label": "Ceiling Hangings"
+    },
+    {
+      "id": "fitting-room",
+      "label": "Fitting Room"
+    },
+    {
+      "id": "delivery-packaging",
+      "label": "Delivery Packaging"
+    }
+  ],
+  "Restaurants / Cafe / Food Outlets": [
+    {
+      "id": "entry-glass-or-door",
+      "label": "Entry Glass or Door"
+    },
+    {
+      "id": "tabletops",
+      "label": "Tabletops"
+    },
+    {
+      "id": "inside-walls",
+      "label": "Inside Walls"
+    },
+    {
+      "id": "menu-card-branding",
+      "label": "Menu Card Branding"
+    },
+    {
+      "id": "delivery-packaging",
+      "label": "Delivery Packaging"
+    },
+    {
+      "id": "washroom-doors-mirrors",
+      "label": "Washroom Doors/Mirrors"
+    },
+    {
+      "id": "takeaway-counters",
+      "label": "Takeaway Counters"
+    },
+    {
+      "id": "outside-umbrellas-chairs",
+      "label": "Outside Umbrellas / Chairs"
+    }
+  ],
+  "Residential Societies / RWAs": [
+    {
+      "id": "main-gate-entry-arch",
+      "label": "Main Gate / Entry Arch"
+    },
+    {
+      "id": "clubhouse-walls-notice-boards",
+      "label": "Clubhouse Walls / Notice Boards"
+    },
+    {
+      "id": "lifts",
+      "label": "Lifts"
+    },
+    {
+      "id": "empty-walls-basement-common-",
+      "label": "Empty Walls (basement, common)"
+    },
+    {
+      "id": "staircases",
+      "label": "Staircases"
+    },
+    {
+      "id": "parking-area",
+      "label": "Parking Area"
+    },
+    {
+      "id": "digital-display",
+      "label": "Digital Display"
+    }
+  ],
+  "Corporate Offices / Corporate Parks": [
+    {
+      "id": "lift-branding",
+      "label": "Lift Branding"
+    },
+    {
+      "id": "lobby-digital-screens",
+      "label": "Lobby Digital Screens"
+    },
+    {
+      "id": "cafeteria-tables-walls",
+      "label": "Cafeteria Tables / Walls"
+    },
+    {
+      "id": "meeting-rooms",
+      "label": "Meeting Rooms"
+    },
+    {
+      "id": "reception-desk-branding",
+      "label": "Reception Desk Branding"
+    },
+    {
+      "id": "parking-lot",
+      "label": "Parking Lot"
+    },
+    {
+      "id": "event-sponsorships",
+      "label": "Event Sponsorships"
+    }
+  ],
+  "Gyms / Fitness Centers": [
+    {
+      "id": "reception-area",
+      "label": "Reception Area"
+    },
+    {
+      "id": "mirrors",
+      "label": "Mirrors"
+    },
+    {
+      "id": "gym-equipment",
+      "label": "Gym Equipment"
+    },
+    {
+      "id": "locker-rooms",
+      "label": "Locker Rooms"
+    },
+    {
+      "id": "water-dispensers-supplement-bars",
+      "label": "Water Dispensers / Supplement Bars"
+    }
+  ],
+  "Clinics / Hospitals": [
+    {
+      "id": "waiting-area-walls",
+      "label": "Waiting Area Walls"
+    },
+    {
+      "id": "lift-doors",
+      "label": "Lift Doors"
+    },
+    {
+      "id": "pharmacy-counters",
+      "label": "Pharmacy Counters"
+    },
+    {
+      "id": "discharge-files-prescription-sheets",
+      "label": "Discharge Files / Prescription Sheets"
+    },
+    {
+      "id": "doctor-chamber-doors",
+      "label": "Doctor Chamber Doors"
+    }
+  ],
+  "Multiplexes / Cinema Halls": [
+    {
+      "id": "foyer-wall-panels",
+      "label": "Foyer Wall Panels"
+    },
+    {
+      "id": "staircases-railings",
+      "label": "Staircases / Railings"
+    },
+    {
+      "id": "food-counter",
+      "label": "Food Counter"
+    },
+    {
+      "id": "seat-backs",
+      "label": "Seat Backs"
+    },
+    {
+      "id": "digital-screens",
+      "label": "Digital Screens"
+    }
+  ],
+  "Co-Working Spaces": [
+    {
+      "id": "common-areas",
+      "label": "Common Areas"
+    },
+    {
+      "id": "meeting-room-glass",
+      "label": "Meeting Room Glass"
+    },
+    {
+      "id": "desks",
+      "label": "Desks"
+    },
+    {
+      "id": "pantry",
+      "label": "Pantry"
+    }
+  ],
+  "Outdoor Spaces / Hoardings / Vehicles": [
+    {
+      "id": "gate-arch-perimeter-wall",
+      "label": "Gate Arch / Perimeter Wall"
+    },
+    {
+      "id": "rooftop-hoardings",
+      "label": "Rooftop Hoardings"
+    },
+    {
+      "id": "lookwalkers",
+      "label": "Lookwalkers"
+    },
+    {
+      "id": "branded-vehicles",
+      "label": "Branded Vehicles"
+    }
+  ]
+}
