@@ -43,7 +43,7 @@ function App() {
         <Route path="/browse" element={<Browse />} />
         <Route path="/videos" element={<Videos />} />
         <Route path="/how-it-works" element={<HowItWorks/>} />
-        <Route path="/list-your-space" element={<ListYourSpace/>} />
+        <Route path="/list-space" element={<ListYourSpace/>} />
         <Route path="/pricing" element={<Pricing/>} />
         <Route path="/payment" element={<MockPaymentPage/>} />
 
