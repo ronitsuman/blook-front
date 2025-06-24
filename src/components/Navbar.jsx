@@ -245,7 +245,7 @@ export default function Navbar() {
       { name: "Browse Spaces", href: "/browse" },
     ],
     spaceOwner: [
-      { name: "Dashboard", href: "/dashboard/space-owner" },
+      { name: "Dashboard", href: "/dashboard/spaceOwner" },
       { name: "My Spaces", href: "#" },
       { name: "Bookings", href: "#" },
       { name: "Earnings", href: "#" },
