@@ -58,7 +58,7 @@ function App() {
         <Route path="/modules/blookheat" element={<BlookHeat/>} />
 
         <Route
-            path="/dashboard/space-owner"
+            path="/dashboard/spaceOwner"
             element={
               <ProtectedRoute>
                 <SpaceOwnerDashboard/>
