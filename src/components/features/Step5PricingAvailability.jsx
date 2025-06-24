@@ -164,6 +164,8 @@ export default function Step5PricingAvailability({ formData, setFormData, next, 
                   className="w-full border px-4 py-2 rounded-lg"
                 />
               </div>
+              {/* listing type  */}
+              {/* {listing typee ends here } */}
               <div>
                 <label className="block font-medium mb-1">Upload Heat Map Proof (image)</label>
                 <input
@@ -181,7 +183,19 @@ export default function Step5PricingAvailability({ formData, setFormData, next, 
                   />
                 )}
               </div>
+              <div className="mt-6">
+             <label className="block mb-1">Listing Type:</label>
+           <select
+            value={formData.listingType}
+            onChange={e => setFormData(prev => ({ ...prev, listingType: e.target.value }))}
+            className="input"
+          >
+            <option value="free">Free Listing</option>
+            <option value="premium">Premium Listing (featured, paid)</option>
+          </select>
+        </div>
             </div>
+
           )}
         </div>
 

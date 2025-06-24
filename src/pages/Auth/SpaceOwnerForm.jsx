@@ -1,10 +1,11 @@
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Building2 } from "lucide-react"
-import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Building2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function SpaceOwnerSignup() {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -20,20 +21,42 @@ export default function SpaceOwnerSignup() {
     accountNumber: "",
     upi: "",
     authorizedToMonetize: false,
-  })
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target
-    setFormData({
-      ...formData,
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
       [name]: type === "checkbox" ? checked : value,
-    })
-  }
+    }));
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(formData)
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    try {
+      // Send JSON payload to backend
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL || 'https://your-render-backend.com'}/api/auth/register`,
+        {
+          ...formData,
+          role: "spaceOwner"
+        }
+      );
+      if (res.status === 201) {
+        // Registration successful
+        navigate("/dashboard");
+      }
+    } catch (err) {
+      console.error(err);
+      setError(err.response?.data?.message || "Registration failed");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#3f0ec9] to-[#511cc3] px-4 py-10">
@@ -46,9 +69,7 @@ export default function SpaceOwnerSignup() {
       >
         <div className="flex flex-col items-center mb-6">
           <div className="bg-blue-100 p-3 rounded-full mb-2">
-            {/* <Building2 className="text-blue-600 w-6 h-6" /> */}
-           <img src="logo.png" width={170} className="mx-auto" height={30} alt="" />
-
+            <img src="logo.png" width={170} className="mx-auto" height={30} alt="logo" />
           </div>
           <h2 className="text-xl font-bold text-center text-blue-800">
             Space Owner Sign Up
@@ -57,6 +78,8 @@ export default function SpaceOwnerSignup() {
             Join BLookMySpace and start monetizing your space
           </p>
         </div>
+
+        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
 
         {[
           { label: "Full Name", name: "fullName" },
@@ -93,27 +116,28 @@ export default function SpaceOwnerSignup() {
             { label: "UPI ID", name: "upi" },
           ].map(({ label, name }) => (
             <div key={name} className="mb-4">
-              <label className="block text-sm text-gray-600 mb-1">{label} *</label>
+              <label className="block text-sm text-gray-600 mb-1">
+                {label} *
+              </label>
               <input
                 type="text"
                 name={name}
                 value={formData[name]}
                 onChange={handleChange}
-                className="w-full  px-4 py-3 h-8 bg-gray-100    border-b-blue-500 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-sky-600 "
+                className="w-full px-4 py-3 h-8 bg-gray-100 border-b-blue-500 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
                 required
               />
             </div>
           ))}
         </div>
 
-        <div className="flex gap-2  mb-6">
+        <div className="flex gap-2 mb-6">
           <input
             type="checkbox"
             name="authorizedToMonetize"
             checked={formData.authorizedToMonetize}
             onChange={handleChange}
-            required
-            className="mr-2  "
+            className="mr-2"
           />
           <label className="text-sm text-blue-700">
             I confirm I'm authorized to monetize this space *
@@ -122,15 +146,19 @@ export default function SpaceOwnerSignup() {
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded-md font-semibold hover:bg-blue-700 transition"
+          disabled={loading}
+          className="w-full bg-blue-600 text-white py-2 rounded-md font-semibold hover:bg-blue-700 transition disabled:opacity-50"
         >
-          Register
+          {loading ? 'Registering...' : 'Register'}
         </button>
 
         <p className="text-xs text-center text-gray-500 mt-4">
-          Already have an account? <span className="text-blue-600 cursor-pointer" onClick={()=>navigate('/login')}>Sign in here</span>
+          Already have an account?{' '}
+          <span className="text-blue-600 cursor-pointer" onClick={() => navigate('/login')}>
+            Sign in here
+          </span>
         </p>
       </motion.form>
     </div>
-  )
+  );
 }

@@ -77,7 +77,7 @@ export default function Step7ReviewAndSubmit({ formData, back }) {
         navigate('/payment-page');
       } else {
         // Directly POST to backend
-        const res = await axiosInstance.post('/space/register', finalPayload);
+        const res = await axiosInstance.post('/spaces/register', finalPayload);
         setLoading(false);
         toast.success('Space registered successfully!');
         navigate('/dashboard');
@@ -108,6 +108,7 @@ export default function Step7ReviewAndSubmit({ formData, back }) {
           <p><strong>Availability:</strong> {formData.availability?.[0]?.from?.toString().slice(0, 10)} to {formData.availability?.[0]?.to?.toString().slice(0, 10)}</p>
           <p><strong>PAN Number:</strong> {formData.panNumber}</p>
           <p><strong>Listing Type:</strong> {formData.listingType}</p>
+          {/* <P><Strong>Front{formdata.images}                 </Strong> </P> */}
         </div>
 
         <div className="flex justify-between mt-8">
