@@ -40,7 +40,7 @@ export default function SpaceOwnerSignup() {
     try {
       // Send JSON payload to backend
       const res = await axios.post(
-        `${process.env.REACT_APP_API_URL || 'https://your-render-backend.com'}/api/auth/register`,
+        `${import.meta.env.REACT_APP_API_URL || 'https://blook-back.onrender.com'}/api/auth/register`,
         {
           ...formData,
           role: "spaceOwner"
