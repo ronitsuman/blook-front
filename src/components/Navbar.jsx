@@ -188,6 +188,11 @@
 // }
 
 
+
+
+
+
+
 import { Menu, X, ChevronDown } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Link, useNavigate, useLocation } from "react-router-dom"
@@ -238,15 +243,13 @@ export default function Navbar() {
       { name: "Disputes", href: "#" },
       { name: "Reports", href: "#" },
       { name: "Browse Spaces", href: "/browse" },
-
     ],
-    'space-owner': [
+    spaceOwner: [
       { name: "Dashboard", href: "/dashboard/space-owner" },
       { name: "My Spaces", href: "#" },
       { name: "Bookings", href: "#" },
       { name: "Earnings", href: "#" },
       { name: "Browse Spaces", href: "/browse" },
-
     ],
     advertiser: [
       { name: "Dashboard", href: "/dashboard/advertiser" },
@@ -255,7 +258,6 @@ export default function Navbar() {
       { name: "Payments", href: "#" },
       { name: "Browse Spaces", href: "/browse" },
       { name: "Profile", href: "/profile" },
-
     ],
     vendor: [
       { name: "Dashboard", href: "/dashboard/vendor" },
@@ -263,7 +265,6 @@ export default function Navbar() {
       { name: "Active Jobs", href: "#" },
       { name: "Payouts", href: "#" },
       { name: "Browse Spaces", href: "/browse" },
-
     ],
     agent: [
       { name: "Dashboard", href: "/dashboard/agent" },
@@ -271,7 +272,6 @@ export default function Navbar() {
       { name: "Leads", href: "#" },
       { name: "My Earnings", href: "#" },
       { name: "Browse Spaces", href: "/browse" },
-
     ],
   }
 
@@ -282,8 +282,10 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
 
         {/* Logo */}
-        <Link to="/" >
-          <h1 className="text-xl font-bold text-blue-700">BLookMySpace</h1>
+        <Link to="/">
+          {/* <h1 className="text-xl font-bold text-blue-700">BLookMySpace</h1> */}
+          <img src="logo.png" width={150} height={50} className="mx-auto"  alt="" />
+
         </Link>
 
         {/* Desktop Menu */}
@@ -321,7 +323,7 @@ export default function Navbar() {
           {/* Auth Buttons */}
           {isAuthenticated ? (
             <>
-              <span className="text-blue-600 font-semibold text-sm">Hi, {user.name}</span>
+              <span className="text-blue-600 font-semibold text-sm">Hi, {user?.name || 'User'}</span>
               <button
                 onClick={handleLogout}
                 className="text-sm px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-100"
@@ -363,7 +365,7 @@ export default function Navbar() {
           ))}
           {isAuthenticated ? (
             <>
-              <span className="block text-sm text-blue-600">Hi, {user.name}</span>
+              <span className="block text-sm text-blue-600">Hi, {user?.name || 'User'}</span>
               <button
                 onClick={handleLogout}
                 className="text-sm w-full py-2 border border-blue-600 text-blue-600 rounded"

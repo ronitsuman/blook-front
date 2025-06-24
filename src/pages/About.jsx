@@ -141,17 +141,17 @@ export default function About() {
   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto text-sm">
     {[
       {
-        name: "Rajesh Kumar",
+        name: "null",
         title: "Founder & CEO",
         desc: "15+ years in advertising and technology. Previously led digital transformation at major advertising agencies.",
       },
       {
-        name: "Priya Sharma",
+        name: "null",
         title: "Co-founder & CTO",
         desc: "Tech veteran with expertise in AI/ML and data analytics. Former engineering lead at top tech companies.",
       },
       {
-        name: "Amit Patel",
+        name: "Null",
         title: "Chief Operating Officer",
         desc: "Operations expert with deep understanding of Indian markets. Scaled multiple startups from 0 to ₹100M+ revenue.",
       },

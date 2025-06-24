@@ -3,7 +3,7 @@
 // it's best to split this into logical components: Basic Info, Branding Options, Heat Mapping, Bank Details, etc.
 // This modular approach will ensure maintainability and scalability of the codebase.
 
-import ListYourSpaceForm from "../components/ListYourSpaceForm";
+import ListYourSpaceForm from "../components/features/ListYourSpaceForm";
 
 export default function ListYourSpace() {
   return (

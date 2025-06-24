@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 
 const roles = [
   {
-    id: 'space-owner',
+    id: 'spaceOwner',
     title: 'Space Owner',
     description: 'Monetize your space by listing it on BlookMySpace.',
     emoji: '🏢',
@@ -86,8 +86,8 @@ export default function SelectRole() {
             </ul>
 
             <button
-              onClick={()=>{navigate('/signup')}}
-            //   onClick={() => handleSelect(role.id)}
+              // onClick={()=>{navigate('/signup')}}
+              onClick={() => handleSelect(role.id)}
               className="mt-auto bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
             >
               Continue as {role.title}

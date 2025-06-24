@@ -146,7 +146,7 @@ export default function Login() {
 
       const { token, user } = res.data
 
-      // ✅ Save to Redux store
+      //  Save to Redux store
       dispatch(loginSuccess({ token, user }))
 
       toast.success('Login successful!')
@@ -167,8 +167,9 @@ export default function Login() {
       <ToastContainer />
       <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-md">
         <div className="text-center mb-6">
-          <div className="h-12 w-12 bg-blue-100 rounded-full inline-flex items-center justify-center text-2xl font-bold text-blue-600">
-            B
+          <div className="h-22 w-22  rounded-full inline-flex items-center justify-center text-2xl font-bold text-blue-600">
+             <img src="logo.png" width={170} className="mx-auto" height={30} alt="" />
+
           </div>
           <h1 className="text-xl font-semibold mt-2">Welcome Back</h1>
           <p className="text-sm text-gray-500">Login to continue</p>
