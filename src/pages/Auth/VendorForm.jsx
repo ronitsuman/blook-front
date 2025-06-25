@@ -92,36 +92,83 @@ export default function VendorRegistration() {
     }));
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const data = new FormData();
+  //   Object.entries(formData).forEach(([key, val]) => {
+  //     if (key === "complianceDocs") {
+  //       val.forEach((doc, i) => {
+  //         data.append(`complianceDocs[${i}][name]`, doc.name);
+  //         data.append(`complianceDocs[${i}][file]`, doc.file);
+  //       });
+  //     } else if (key === "bankDetails") {
+  //       Object.entries(val).forEach(([bk, bv]) =>
+  //         data.append(`bankDetails[${bk}]`, bv)
+  //       );
+  //     } else if (key === "serviceCategories" || key === "cities") {
+  //       val.forEach((v) => data.append(`${key}[]`, v));
+  //     } else if (key === "profileImage" && val) {
+  //       data.append("profileImage", val);
+  //     } else if (key !== "cityInput") {
+  //       data.append(key, val);
+  //     }
+  //   });
+  //   try {
+  //     await axios.post("http://localhost:5000/api/auth/register", data);
+  //     alert("Vendor registered successfully!");
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert("Error during registration");
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
-    Object.entries(formData).forEach(([key, val]) => {
-      if (key === "complianceDocs") {
-        val.forEach((doc, i) => {
-          data.append(`complianceDocs[${i}][name]`, doc.name);
-          data.append(`complianceDocs[${i}][file]`, doc.file);
-        });
-      } else if (key === "bankDetails") {
-        Object.entries(val).forEach(([bk, bv]) =>
-          data.append(`bankDetails[${bk}]`, bv)
-        );
-      } else if (key === "serviceCategories" || key === "cities") {
-        val.forEach((v) => data.append(`${key}[]`, v));
-      } else if (key === "profileImage" && val) {
-        data.append("profileImage", val);
-      } else if (key !== "cityInput") {
-        data.append(key, val);
+  
+    // 1) Simple fields
+    data.append("fullName", formData.fullName);
+    data.append("email", formData.email);
+    data.append("password", formData.password);
+    data.append("phone", formData.phone);
+    data.append("companyName", formData.companyName);
+    data.append("isIndividual", formData.isIndividual);
+    data.append("minQuoteValue", formData.minQuoteValue);
+    data.append("role", "vendor");
+  
+    // 2) Arrays: services & cities
+    formData.serviceCategories.forEach(s => data.append("serviceCategories[]", s));
+    formData.cities.forEach(c => data.append("cities[]", c));
+  
+    // 3) Profile Image
+    if (formData.profileImage) {
+      data.append("profileImage", formData.profileImage);
+    }
+  
+    // 4) Compliance Docs (flat fieldname!)
+    formData.complianceDocs.forEach((doc) => {
+      if (doc.file) {
+        data.append("complianceDocs", doc.file);        // matches upload.fields
+        data.append("complianceDocNames", doc.name);     // your backend reads these
       }
     });
+  
+    // 5) Bank details
+    Object.entries(formData.bankDetails).forEach(([k,v]) =>
+      data.append(k, v)
+    );
+  
     try {
       await axios.post("https://blook-back.onrender.com/api/auth/register", data);
       alert("Vendor registered successfully!");
+      navigate("/some-success-page");
     } catch (err) {
       console.error(err);
       alert("Error during registration");
     }
   };
 
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center py-10 px-4">
       <motion.form
@@ -142,11 +189,11 @@ export default function VendorRegistration() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <input name="fullName" required placeholder="Full Name" className="input h-8 p-2 " onChange={handleChange} />
-          <input name="email" required type="email" placeholder="Email Address" className="input h-8 p-2" onChange={handleChange} />
-          <input name="password" required type="password" placeholder="Password" className="input h-8 p-2" onChange={handleChange} />
-          <input name="phone" required placeholder="Phone Number" className="input h-8 p-2" onChange={handleChange} />
-          <input name="companyName" placeholder="Company Name" className="input h-8 p-2" onChange={handleChange} />
-          <input name="minQuoteValue" placeholder="Minimum Quote Value" className="input h-8 p-2" onChange={handleChange} />
+          <input name="email" required type="email" placeholder="Email Address" className="input h-8 p-2 text-black" onChange={handleChange} />
+          <input name="password" required type="password" placeholder="Password" className="input h-8 p-2 text-black" onChange={handleChange} />
+          <input name="phone" required placeholder="Phone Number" className="input h-8 p-2 text-black" onChange={handleChange} />
+          <input name="companyName" placeholder="Company Name" className="input h-8 p-2 text-black" onChange={handleChange} />
+          <input name="minQuoteValue" placeholder="Minimum Quote Value" className="input h-8 p-2 text-black" onChange={handleChange} />
         </div>
 
         <div className="mb-4">
@@ -174,7 +221,7 @@ export default function VendorRegistration() {
           <div className="flex gap-2 mb-2">
             <input
               placeholder="Add City"
-              className="input w-full flex-1 h-8 p-2"
+              className="input w-full flex-1 h-8 p-2 text-black"
               value={formData.cityInput}
               onChange={(e) => setFormData(prev => ({ ...prev, cityInput: e.target.value }))}
             />
@@ -203,7 +250,7 @@ export default function VendorRegistration() {
             <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <input
                 placeholder="Document name (e.g. PAN, Aadhar)"
-                className="input"
+                className="input text-black"
                 value={doc.name}
                 onChange={(e) => updateComplianceDoc(i, "name", e.target.value)}
               />
@@ -225,11 +272,11 @@ export default function VendorRegistration() {
 
         <h3 className="mb-2 font-semibold">Bank Information</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <input name="accountHolder" placeholder="Account Holder" className="input h-8 p-2" onChange={handleChange} />
-          <input name="bankName" placeholder="Bank Name" className="input h-8 p-2" onChange={handleChange} />
-          <input name="accountNumber" placeholder="Account Number" className="input h-8 p-2" onChange={handleChange} />
-          <input name="ifsc" placeholder="IFSC Code" className="input h-8 p-2" onChange={handleChange} />
-          <input name="upi" placeholder="UPI ID" className="input h-8 p-2" onChange={handleChange} />
+          <input name="accountHolder" placeholder="Account Holder" className="input h-8 p-2 text-black" onChange={handleChange} />
+          <input name="bankName" placeholder="Bank Name" className="input h-8 p-2 text-black" onChange={handleChange} />
+          <input name="accountNumber" placeholder="Account Number" className="input h-8 p-2 text-black" onChange={handleChange} />
+          <input name="ifsc" placeholder="IFSC Code" className="input h-8 p-2 text-black" onChange={handleChange} />
+          <input name="upi" placeholder="UPI ID" className="input h-8 p-2 text-black" onChange={handleChange} />
         </div>
 
         <button type="submit" className="w-full py-3 bg-blue-600 hover:bg-blue-700 transition rounded font-bold text-white">
