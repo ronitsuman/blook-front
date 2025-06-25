@@ -402,7 +402,7 @@ export default function SpaceOwnerSignup() {
           role: "spaceOwner"
         }
       );
-      if (res.status === 201) navigate("/dashboard/space-owner");
+      if (res.status === 201) navigate("/dashboard/spaceOwner");
     } catch (err) {
       console.error(err);
       setError(err.response?.data?.message || "Registration failed");
