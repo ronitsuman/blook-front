@@ -82,7 +82,7 @@ export default function AdvertiserRegistration() {
       }
     });
     try {
-      await axios.post("/api/auth/register", data);
+      await axios.post("https://blook-back.onrender.com/api/auth/register", data);
       alert("Advertiser registered successfully!");
     } catch (err) {
       console.error(err);
@@ -138,7 +138,7 @@ export default function AdvertiserRegistration() {
           I confirm that I have the legal rights to advertise on behalf of my company
         </label>
 
-        <h3 className="mb-2 font-semibold">Compliance Documents</h3>
+        <h3 className="mb-2 font-semibold">Compliance Documents <span>Adhar Card , Pan Card are required</span></h3>
         <div className="mb-6 space-y-4">
           {formData.complianceDocs.map((doc, i) => (
             <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2">

@@ -114,7 +114,7 @@ export default function VendorRegistration() {
       }
     });
     try {
-      await axios.post("/api/auth/register", data);
+      await axios.post("https://blook-back.onrender.com/api/auth/register", data);
       alert("Vendor registered successfully!");
     } catch (err) {
       console.error(err);

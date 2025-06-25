@@ -43,7 +43,7 @@ export default function TelecallerRegistration() {
     data.append("role", "telecaller");
 
     try {
-      await axios.post("/api/auth/register", data);
+      await axios.post("https://blook-back.onrender.com/api/auth/register", data);
       alert("Telecaller registered successfully!");
     } catch (err) {
       console.error(err);

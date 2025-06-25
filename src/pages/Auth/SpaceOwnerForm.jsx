@@ -396,7 +396,7 @@ export default function SpaceOwnerSignup() {
     setError("");
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API_URL || 'https://blook-back.onrender.com'}/api/auth/register`,
+        `${import.meta.REACT_APP_API_URL || 'https://blook-back.onrender.com'}/api/auth/register`,
         {
           ...formData,
           role: "spaceOwner"
