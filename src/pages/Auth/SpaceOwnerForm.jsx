@@ -395,13 +395,16 @@ export default function SpaceOwnerSignup() {
     setLoading(true);
     setError("");
     try {
-      const res = await axios.post(
-        `${import.meta.REACT_APP_API_URL || 'https://blook-back.onrender.com'}/api/auth/register`,
+      const res = // Register pe
+      await axios.post(
+        `${import.meta.env.VITE_API_URL || 'https://blook-back.onrender.com'}/api/auth/register`,
         {
           ...formData,
+          profilePic: formData.profilePictureUrl, // <-- Yeh add karo
           role: "spaceOwner"
         }
       );
+      
       if (res.status === 201) navigate("/dashboard/spaceOwner");
     } catch (err) {
       console.error(err);

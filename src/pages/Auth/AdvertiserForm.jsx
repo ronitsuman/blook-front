@@ -112,17 +112,17 @@ export default function AdvertiserRegistration() {
         <h3 className="mb-2 font-semibold">Personal Information</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <input  name="fullName" required placeholder="Full Name" className="input h-8 p-2" onChange={handleInputChange} />
-          <input  name="email" required type="email" placeholder="Email Address" className="input h-8 p-2" onChange={handleInputChange} />
-          <input  name="password" required type="password" placeholder="Password" className="input h-8 p-2" onChange={handleInputChange} />
-          <input  name="phone" required placeholder="Phone Number" className="input h-8 p-2" onChange={handleInputChange} />
+          <input  name="email" required type="email" placeholder="Email Address" className="input h-8 p-2 text-black" onChange={handleInputChange} />
+          <input  name="password" required type="password" placeholder="Password" className="input h-8 p-2 text-black" onChange={handleInputChange} />
+          <input  name="phone" required placeholder="Phone Number" className="input h-8 p-2 text-black" onChange={handleInputChange} />
         </div>
 
         <h3 className="mb-2 font-semibold">Company Information</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <input name="companyName" required placeholder="Company Name" className="input h-8 p-2" onChange={handleInputChange} />
-          <input name="contactPerson" placeholder="Contact Person" className="input h-8 p-2" onChange={handleInputChange} />
-          <input name="industryType" placeholder="Select Industry Type" className="input h-8 p-2" onChange={handleInputChange} />
-          <input name="website" placeholder="Website URL" className="input h-8 p-2" onChange={handleInputChange} />
+          <input name="companyName" required placeholder="Company Name" className="input h-8 p-2 text-black" onChange={handleInputChange} />
+          <input name="contactPerson" placeholder="Contact Person" className="input h-8 p-2 text-black" onChange={handleInputChange} />
+          <input name="industryType" placeholder="Select Industry Type" className="input h-8 p-2 text-black" onChange={handleInputChange} />
+          <input name="website" placeholder="Website URL" className="input h-8 p-2 text-black" onChange={handleInputChange} />
         </div>
 
         <h3 className="mb-2 font-semibold">Profile Image</h3>
@@ -143,8 +143,8 @@ export default function AdvertiserRegistration() {
           {formData.complianceDocs.map((doc, i) => (
             <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <input
-                placeholder="Document name (e.g. PAN, Aadhar)"
-                className="input"
+                placeholder="Enter Doc name (e.g. PAN, Aadhar)"
+                className="input text-black"
                 value={doc.name}
                 onChange={(e) => handleComplianceChange(i, "name", e.target.value)}
               />
@@ -166,11 +166,12 @@ export default function AdvertiserRegistration() {
 
         <h3 className="mb-2 font-semibold">Bank Information</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <input name="accountHolderName" required placeholder="Account Holder Name" className="input h-8 p-2" onChange={handleInputChange} />
-          <input name="bankName" required placeholder="Bank Name" className="input h-8 p-2" onChange={handleInputChange} />
-          <input name="ifscCode" required placeholder="IFSC Code" className="input h-8 p-2" onChange={handleInputChange} />
-          <input name="accountNumber" required placeholder="Account Number" className="input h-8 p-2 "  onChange={handleInputChange} />
-          <input name="upiId" placeholder="UPI ID (optional)" className="input md:col-span-2 h-8 p-2" onChange={handleInputChange} />
+          <input name="accountHolderName" required placeholder="Account Holder Name" className="input h-8 p-2 text-black" onChange={handleInputChange} />
+          <input name="bankName" required placeholder="Bank Name" className="input h-8 p-2 text-black" onChange={handleInputChange} />
+          <input name="ifscCode" required placeholder="IFSC Code" className="input h-8 p-2 text-black" onChange={handleInputChange} />
+          <input name="accountNumber" required placeholder="Account Number" className="input h-8 p-2 text-black "  onChange={handleInputChange} />
+          <input name="upiId" placeholder="UPI ID (optional)" className="input md:col-span-2 h-8 p-2 text-black
+           " onChange={handleInputChange} />
         </div>
 
         <button
