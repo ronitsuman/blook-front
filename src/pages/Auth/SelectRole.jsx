@@ -53,6 +53,19 @@ const roles = [
       'Easy to start, no technical skills needed',
     ],
   },
+  {
+    id: 'telecaller',
+    title: 'Telecaller',
+    description: 'Help grow Blook by calling leads and managing communication.',
+    emoji: '📞',
+    benefits: [
+      'Access verified lead lists',
+      'Record call outcomes and notes',
+      'Get commission for successful conversion',
+      'Work from home-friendly',
+      'No field work needed',
+    ],
+  },
 ]
 
 export default function SelectRole() {

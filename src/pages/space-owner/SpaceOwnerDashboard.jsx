@@ -56,6 +56,7 @@ import Vendors from './tabs/Vendor';
 import Advertisers from './tabs/Advertisers';
 import AnalyticsEarnings from './tabs/AnalyticsEarnings';
 import Support from './tabs/Supports';
+import ProfileSection from './tabs/ProfileSection';
 
 const TABS = [
   'Dashboard',
@@ -64,7 +65,8 @@ const TABS = [
   'Vendors',
   'Advertisers',
   'Analytics & Earnings',
-  'Support'
+  'Support',
+  'Profile'
 ];
 
 const SpaceOwnerDashboard = () => {
@@ -86,6 +88,8 @@ const SpaceOwnerDashboard = () => {
         return <AnalyticsEarnings />;
       case 'Support':
         return <Support />;
+      case 'Profile':
+        return < ProfileSection/>;
       default:
         return <DashboardHome />;
     }

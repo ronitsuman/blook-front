@@ -22,7 +22,7 @@ import Login from "./pages/Auth/Login"
 import SpaceOwnerDashboard from "./pages/space-owner/SpaceOwnerDashboard"
 import ProtectedRoute from "./components/ProtectedRoute"
 import PaymentPage from "./pages/PaymentPage"
-import MockPaymentPage from "./pages/MockPaymentPage"
+import MockPaymentPage from "./components/features/Step8Payment"
 import AdminDashboard from "./pages/admin/AdminDashboard"
 import SpaceDetails from "./pages/SpaceDetails"
 import BookSpace from "./pages/BookSpace"
@@ -30,6 +30,12 @@ import AdvertiserDashboard from "./pages/advertiser/AdvertizerDashboard"
 import Profile from "./pages/advertiser/Profile"
 // import AdvertiserProfile from "./pages/advertiser/Profile"
 // import SpaceOwnerModel from "../../backend/roles/space-owner/spaceOwner.model"
+import EditSpace from "./pages/space-owner/EditSpaces"
+import AgentDashboard from "./pages/agent/AgentDashboard"
+import Dashboard from "./pages/advertiser/Dashboard"
+import VendorDashboard from "./pages/Vendor/VendorDashboard"
+import CampaignCreate from "./pages/advertiser/components/CampaignCreate"
+import VendorJobsTable from "./pages/Vendor/components/vendorjobTable"
 
 
 function App() {
@@ -45,7 +51,7 @@ function App() {
         <Route path="/how-it-works" element={<HowItWorks/>} />
         <Route path="/list-space" element={<ListYourSpace/>} />
         <Route path="/pricing" element={<Pricing/>} />
-        <Route path="/payment" element={<MockPaymentPage/>} />
+        <Route path="/payment-page" element={<MockPaymentPage/>} />
 
         <Route path="/supports" element={<Support/>} />
         <Route path="/signup" element={<Signup/>} />
@@ -56,6 +62,7 @@ function App() {
         <Route path="/modules/blookperks" element={<BlookPerks/>} />
         <Route path="/modules/blookworks" element={<BlookWorks/>} />
         <Route path="/modules/blookheat" element={<BlookHeat/>} />
+        <Route path="/edit-space/:id" element={<EditSpace/>} />
 
         <Route
             path="/dashboard/spaceOwner"
@@ -75,6 +82,14 @@ function App() {
             }
           />
         <Route
+            path="/dashboard/agent"
+            element={
+              <ProtectedRoute>
+                <AgentDashboard/>
+              </ProtectedRoute>
+            }
+          />
+        <Route
             path="/space/:id"
             element={
               <ProtectedRoute>
@@ -82,19 +97,52 @@ function App() {
               </ProtectedRoute>
             }
           />
-        <Route
+        {/* <Route
             path="/book/id"
             element={
               <ProtectedRoute>
                 <BookSpace/>
               </ProtectedRoute>
             }
-          />
+          /> */}
+          <Route
+  path="/campaign/create"
+  element={
+    <ProtectedRoute>
+      <CampaignCreate/>
+    </ProtectedRoute>
+  }
+/>
+
+          <Route path="/space/:id/book" element={ 
+            <ProtectedRoute>
+            <BookSpace />
+            </ProtectedRoute>
+            } />
+
+<Route path="/payment/:orderId" element={<PaymentPage />} />
+
         <Route
             path="/dashboard/advertiser"
             element={
               <ProtectedRoute>
-                <AdvertiserDashboard/>
+                <Dashboard/>
+              </ProtectedRoute>
+            }
+          />
+        <Route
+            path="/dashboard/vendor"
+            element={
+              <ProtectedRoute>
+                <VendorDashboard/>
+              </ProtectedRoute>
+            }
+          />
+        <Route
+            path="/vendor/jobs"
+            element={
+              <ProtectedRoute>
+                <VendorJobsTable/>
               </ProtectedRoute>
             }
           />

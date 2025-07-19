@@ -44,7 +44,8 @@ export default function MockPaymentPage() {
   const handlePaymentAndSubmit = async () => {
     setLoading(true);
     try {
-      const res = await axiosInstance.post('/space/register', spaceData);
+      const res = await axiosInstance.post('/spaces/register', spaceData);
+      ;
       toast.success('Payment successful! Space registered.');
       localStorage.removeItem('spaceListingData');
       setLoading(false);

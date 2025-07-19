@@ -290,13 +290,13 @@ export default function AgentRegistration() {
     });
   
     try {
-      await axios.post("https://blook-back.onrender.com/api/auth/register", data);
+      await axios.post("http://localhost:5000/api/auth/register", data);
       alert("Agent registered successfully!");
       navigate("/dashboard/agent");
     } catch (err) {
       console.error("Registration failed:", err);
       alert("Registration failed");
-    }
+    } 
   };
   
   return (

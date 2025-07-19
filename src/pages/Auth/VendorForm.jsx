@@ -124,50 +124,50 @@ export default function VendorRegistration() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = new FormData();
-  
-    // 1) Simple fields
-    data.append("fullName", formData.fullName);
-    data.append("email", formData.email);
-    data.append("password", formData.password);
-    data.append("phone", formData.phone);
-    data.append("companyName", formData.companyName);
-    data.append("isIndividual", formData.isIndividual);
-    data.append("minQuoteValue", formData.minQuoteValue);
-    data.append("role", "vendor");
-  
-    // 2) Arrays: services & cities
-    formData.serviceCategories.forEach(s => data.append("serviceCategories[]", s));
-    formData.cities.forEach(c => data.append("cities[]", c));
-  
-    // 3) Profile Image
-    if (formData.profileImage) {
-      data.append("profileImage", formData.profileImage);
-    }
-  
-    // 4) Compliance Docs (flat fieldname!)
-    formData.complianceDocs.forEach((doc) => {
-      if (doc.file) {
-        data.append("complianceDocs", doc.file);        // matches upload.fields
-        data.append("complianceDocNames", doc.name);     // your backend reads these
-      }
-    });
-  
-    // 5) Bank details
-    Object.entries(formData.bankDetails).forEach(([k,v]) =>
-      data.append(k, v)
-    );
-  
-    try {
-      await axios.post("https://blook-back.onrender.com/api/auth/register", data);
-      alert("Vendor registered successfully!");
-      navigate("/some-success-page");
-    } catch (err) {
-      console.error(err);
-      alert("Error during registration");
-    }
-  };
+  const data = new FormData();
+data.append("fullName", formData.fullName);
+data.append("email", formData.email);
+data.append("password", formData.password);
+data.append("phone", formData.phone);
+data.append("companyName", formData.companyName);
+data.append("isIndividual", formData.isIndividual);
+data.append("minQuoteValue", formData.minQuoteValue);
+data.append("role", "vendor");
 
+// Array fields
+formData.serviceCategories.forEach(s => data.append("serviceCategories[]", s));
+formData.cities.forEach(c => data.append("cities[]", c));
+
+// Profile image
+if (formData.profileImage) {
+  data.append("profileImage", formData.profileImage);
+}
+
+// Compliance Docs
+formData.complianceDocs.forEach((doc) => {
+  if (doc.file) {
+    data.append("complianceDocs", doc.file);
+    data.append("complianceDocNames", doc.name);
+  }
+});
+
+// Bank details (names must match what backend expects!)
+Object.entries(formData.bankDetails).forEach(([k,v]) =>
+  data.append(k, v)
+);
+
+// If GST Number is present:
+if(formData.gstNumber) data.append("gstNumber", formData.gstNumber);
+
+try {
+  await axios.post("http://localhost:5000/api/auth/register", data);
+  alert("Vendor registered successfully!");
+  navigate("/login", { state: { prefillEmail: formData.email, prefillPassword: formData.password } });
+} catch (err) {
+  console.error(err);
+  alert("Error during registration");
+}
+  };
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center py-10 px-4">
@@ -187,9 +187,9 @@ export default function VendorRegistration() {
           <p className="text-sm opacity-75">Join our trusted vendor network</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <input name="fullName" required placeholder="Full Name" className="input h-8 p-2 " onChange={handleChange} />
-          <input name="email" required type="email" placeholder="Email Address" className="input h-8 p-2 text-black" onChange={handleChange} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 text-black">
+          <input  name="fullName" required placeholder="Full Name" className="input h-8 p-2 " onChange={handleChange} />
+          <input name="email" required type="email" placeholder="Email Address" className="input h-8 p-2 text-black " onChange={handleChange} />
           <input name="password" required type="password" placeholder="Password" className="input h-8 p-2 text-black" onChange={handleChange} />
           <input name="phone" required placeholder="Phone Number" className="input h-8 p-2 text-black" onChange={handleChange} />
           <input name="companyName" placeholder="Company Name" className="input h-8 p-2 text-black" onChange={handleChange} />

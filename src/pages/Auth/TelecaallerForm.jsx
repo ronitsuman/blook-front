@@ -43,7 +43,7 @@ export default function TelecallerRegistration() {
     data.append("role", "telecaller");
 
     try {
-      await axios.post("https://blook-back.onrender.com/api/auth/register", data);
+      await axios.post("http://localhost:5000/api/auth/register", data);
       alert("Telecaller registered successfully!");
     } catch (err) {
       console.error(err);
@@ -67,7 +67,7 @@ export default function TelecallerRegistration() {
           <p className="text-sm text-white/70">Join BlookMySpace outreach team</p>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 mb-6">
+        <div className="grid grid-cols-1 gap-4 mb-6 text-black">
           <input name="fullName" required placeholder="Full Name" className="input" onChange={handleChange} />
           <input name="email" required type="email" placeholder="Email Address" className="input" onChange={handleChange} />
           <input name="password" required type="password" placeholder="Password" className="input" onChange={handleChange} />

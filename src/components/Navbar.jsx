@@ -265,6 +265,8 @@ export default function Navbar() {
       { name: "Active Jobs", href: "#" },
       { name: "Payouts", href: "#" },
       { name: "Browse Spaces", href: "/browse" },
+      { name: "Job Portal", href: "/vendor/jobs" }
+
     ],
     agent: [
       { name: "Dashboard", href: "/dashboard/agent" },

@@ -224,6 +224,241 @@
 // }
 // 
 // 
+// // src/pages/SpaceDetails.jsx
+// import { useParams, useNavigate } from 'react-router-dom'
+// import { useEffect, useState } from 'react'
+// import axiosInstance from '../api/axiosInstance'
+// import { MapPin, Star, Camera, Send, X } from 'lucide-react'
+// import { Carousel } from 'react-responsive-carousel'
+// import { useSelector } from 'react-redux'
+// import Calendar from 'react-calendar'
+// import dayjs from 'dayjs'
+// import 'react-responsive-carousel/lib/styles/carousel.min.css'
+// import 'react-calendar/dist/Calendar.css'
+// import Map from '../components/Map'
+
+// export default function SpaceDetails() {
+//   const { id } = useParams()
+//   const navigate = useNavigate()
+//   const { user } = useSelector(state => state.auth)
+
+//   const [space, setSpace] = useState(null)
+//   const [loading, setLoading] = useState(true)
+//   const [selectedDates, setSelectedDates] = useState([new Date(), new Date()])
+//   const [showSuccess, setShowSuccess] = useState(false)
+//   const [tab, setTab] = useState('details')
+//   const [fullscreenImg, setFullscreenImg] = useState(null)
+
+//   const isNotSpaceOwner = user?.role !== 'space-owner'
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const res = await axiosInstance.get(`/spaces/${id}`)
+//         setSpace(res.data)
+//       } catch (err) {
+//         console.error('Error fetching space:', err)
+//       } finally {
+//         setLoading(false)
+//       }
+//     }
+//     fetchData()
+//   }, [id])
+
+//   const handleBooking = async () => {
+//     if (!user) return navigate('/login')
+//      navigate('/book/:id')
+//   }
+
+// // const handleBooking = async () => {
+// //     if (!user) return navigate('/login');
+  
+// //     try {
+// //       const [startDate, endDate] = selectedDates;
+  
+// //       const res = await axiosInstance.post(`/advertiser/book-space/${space._id}`, {
+// //         brandingType: space.brandingTypes[0],
+// //         startDate,
+// //         endDate,
+// //         notes: 'Booking from SpaceDetails page',
+// //       });
+  
+// //       // ✅ Navigate after successful booking
+// //     //   navigate(`/book-space/${space._id}`, {
+// //     //     state: {
+// //     //       bookingId: res.data._id, // agar backend response me _id ya bookingId return hota ho
+// //     //       space,
+// //     //       startDate,
+// //     //       endDate
+// //     //     }
+// //     //   });
+// //     } catch (err) {
+// //       alert(err?.response?.data?.message || 'Booking failed');
+// //     }
+// //   };
+  
+
+//   if (loading) return <div className="text-center py-10">Loading space...</div>
+//   if (!space) return <div className="text-center py-10 text-red-500">Space not found</div>
+
+//   return (
+//     <div className="bg-gradient-to-br from-white via-blue-50 to-white min-h-screen px-4 md:px-10 py-8 text-blue-900">
+//       <button className="text-sm text-blue-600 mb-4 hover:underline" onClick={() => navigate(-1)}>&larr; Back to Spaces</button>
+
+//       {fullscreenImg && (
+//         <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
+//           <img src={fullscreenImg} className="max-w-full max-h-full" alt="Zoomed" />
+//           <button className="absolute top-6 right-6 text-white text-xl" onClick={() => setFullscreenImg(null)}><X /></button>
+//         </div>
+//       )}
+
+//       <div className="grid md:grid-cols-3 gap-10">
+//         <div className="md:col-span-2 space-y-6">
+//           <div className="border rounded-xl overflow-hidden">
+//             <Carousel autoPlay infiniteLoop showThumbs={true} showStatus={false}>
+//               {Object.values(space.images).filter(Boolean).map((img, i) => (
+//                 <div key={i} onClick={() => setFullscreenImg(img)} className="cursor-zoom-in">
+//                   <img src={img} alt={`img-${i}`} className="max-h-[500px] object-cover w-full" />
+//                 </div>
+//               ))}
+//             </Carousel>
+//           </div>
+
+//           <div className="flex flex-wrap gap-3">
+//             {space.tags?.map((tag, i) => <span key={i} className="bg-yellow-100 text-yellow-700 text-xs px-3 py-1 rounded-full">{tag}</span>)}
+//             {space.heatMappingConsent?.cameraCount > 1 && (
+//               <span className="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full flex items-center gap-1">
+//                 <Camera className="w-4 h-4" /> {space.heatMappingConsent.cameraCount} Cameras
+//               </span>
+//             )}
+//           </div>
+
+//           <div>
+//             <h1 className="text-3xl font-bold mb-1 text-blue-900">{space.spaceName}</h1>
+//             <p className="text-sm text-gray-600 flex items-center gap-2">
+//               <MapPin className="w-4 h-4" /> {space.location?.address?.split(',')[0]}
+//             </p>
+//             <p className="text-yellow-600 mt-1 text-sm flex items-center gap-2">
+//               <Star className="w-4 h-4" /> 4.8 <span className="text-gray-500">(2 reviews)</span>
+//             </p>
+//             <p className="mt-4 text-gray-800 text-sm leading-relaxed">{space.description}</p>
+//           </div>
+
+//           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center bg-white border rounded-lg p-4 shadow-sm text-sm">
+//             <div>
+//               <p className="font-bold text-lg">{space.footfall?.weekday || 0}</p>
+//               <p>Weekday Footfall</p>
+//             </div>
+//             <div>
+//               <p className="font-bold text-lg">{space.footfall?.weekend || 0}</p>
+//               <p>Weekend Footfall</p>
+//             </div>
+//             <div>
+//               <p className="font-bold text-lg">{space.totalArea || 2500} sq ft</p>
+//               <p>Total Area</p>
+//             </div>
+//             <div>
+//               <p className="font-bold text-lg">6 AM - 10 PM</p>
+//               <p>Access Hours</p>
+//             </div>
+//           </div>
+
+//           <div className="border-b flex gap-6 mt-6 text-sm overflow-x-auto">
+//             {['details', 'amenities', 'demographics', 'reviews'].map(t => (
+//               <button
+//                 key={t}
+//                 onClick={() => setTab(t)}
+//                 className={`pb-2 capitalize ${tab === t ? 'border-b-2 border-blue-600 font-semibold text-blue-800' : 'text-gray-500 hover:text-blue-500'}`}
+//               >{t}</button>
+//             ))}
+//           </div>
+
+//           {tab === 'details' && (
+//             <div className="mt-4 space-y-2 text-sm">
+//               <p><strong>Next Available:</strong> 2024-02-01</p>
+//               <p><strong>Min Duration:</strong> 1 month</p>
+//               <p><strong>Pricing:</strong></p>
+//               <ul className="list-disc ml-6">
+//                 {space.suggestedPricing?.map((p, i) => (
+//                   <li key={i}>{p.brandingType}: ₹{p.pricePerMonth}/mo</li>
+//                 )) || 'N/A'}
+//               </ul>
+//             </div>
+//           )}
+
+//           {tab === 'amenities' && (
+//             <div className="mt-4 flex flex-wrap gap-2">
+//               {space.amenities?.map((item, i) => (
+//                 <span key={i} className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">{item}</span>
+//               )) || 'N/A'}
+//             </div>
+//           )}
+
+//           {tab === 'demographics' && (
+//             <div className="mt-4 space-y-2 text-sm">
+//               <p><strong>Age Groups:</strong> {space.demographics?.ageGroups?.join(', ')}</p>
+//               <p><strong>Gender:</strong> {space.demographics?.gender}</p>
+//               <p><strong>Income Group:</strong> {space.demographics?.incomeGroup}</p>
+//             </div>
+//           )}
+
+//           {tab === 'reviews' && (
+//             <div className="mt-4 text-sm text-gray-500 italic">No reviews yet.</div>
+//           )}
+//         </div>
+
+//         {/* Right Sidebar */}
+//         <div className="space-y-6">
+//           <div className="bg-white p-4 rounded-xl border shadow-sm">
+//             <p className="text-xl font-bold text-blue-800">₹{space.suggestedPricing?.[0]?.pricePerMonth || 8000}</p>
+//             <p className="text-sm text-gray-500">per month</p>
+//             <p className="mt-2 text-sm text-gray-600">Next Available: <strong>2024-02-01</strong></p>
+//             <p className="text-sm text-gray-600">Min Duration: <strong>1 month</strong></p>
+//             <Calendar
+//               selectRange
+//               value={selectedDates}
+//               onChange={setSelectedDates}
+//               className="mt-4 border rounded w-full"
+//             />
+//             {isNotSpaceOwner && (
+//               <>
+//                 <button onClick={handleBooking} className="w-full mt-4 bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+//                   {user ? 'Book Now' : 'Login to Book'}
+//                 </button>
+//                 <button className="w-full mt-2 border border-blue-600 text-blue-700 py-2 rounded hover:bg-blue-50">Request Custom Quote</button>
+//               </>
+//             )}
+//           </div>
+
+//           <div className="bg-white p-4 rounded-xl border shadow-sm">
+//             <h3 className="font-semibold text-lg mb-1">Space Owner</h3>
+//             <p className="text-sm">{space.fullName}</p>
+//             <p className="text-xs text-gray-500">Member Since: Jan 2023</p>
+//             <p className="text-xs text-gray-500">Total Spaces: 3</p>
+//             <div className="flex gap-2 mt-2">
+//               <button className="bg-gray-100 px-3 py-1 rounded text-sm">Message</button>
+//               <button className="bg-gray-100 px-3 py-1 rounded text-sm">Call</button>
+//             </div>
+//           </div>
+
+//           <div className="bg-white p-4 rounded-xl border">
+//             <h3 className="font-semibold text-lg mb-1">Location</h3>
+//             <Map lat={space.location?.lat} lng={space.location?.lng} height="200px" />
+//             <p className="text-xs text-gray-600 mt-2">{space.location?.address}</p>
+//           </div>
+//         </div>
+//       </div>
+
+//       {showSuccess && (
+//         <div className="fixed bottom-5 right-5 bg-green-600 text-white px-6 py-3 rounded shadow-lg z-50">
+//           Booking successful!
+//         </div>
+//       )}
+//     </div>
+//   )
+// }
+
+
 // src/pages/SpaceDetails.jsx
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
@@ -232,10 +467,29 @@ import { MapPin, Star, Camera, Send, X } from 'lucide-react'
 import { Carousel } from 'react-responsive-carousel'
 import { useSelector } from 'react-redux'
 import Calendar from 'react-calendar'
-import dayjs from 'dayjs'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import 'react-calendar/dist/Calendar.css'
 import Map from '../components/Map'
+
+function renderPricing(suggestedPricing) {
+  if (Array.isArray(suggestedPricing) && suggestedPricing.length) {
+    return suggestedPricing.map((p, i) => (
+      <li key={i}>
+        {p.brandingType ? `${p.brandingType}: ` : ""}
+        ₹{p.pricePerMonth || p.monthly || p.daily || p.weekly || 0}/mo
+      </li>
+    ));
+  } else if (suggestedPricing && typeof suggestedPricing === "object") {
+    return (
+      <>
+        {suggestedPricing.daily && <li>Daily: ₹{suggestedPricing.daily}/day</li>}
+        {suggestedPricing.weekly && <li>Weekly: ₹{suggestedPricing.weekly}/week</li>}
+        {suggestedPricing.monthly && <li>Monthly: ₹{suggestedPricing.monthly}/mo</li>}
+      </>
+    );
+  }
+  return <li>N/A</li>;
+}
 
 export default function SpaceDetails() {
   const { id } = useParams()
@@ -254,7 +508,7 @@ export default function SpaceDetails() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axiosInstance.get(`/space-owner/public/${id}`)
+        const res = await axiosInstance.get(`/spaces/${id}`)
         setSpace(res.data)
       } catch (err) {
         console.error('Error fetching space:', err)
@@ -265,38 +519,10 @@ export default function SpaceDetails() {
     fetchData()
   }, [id])
 
-  const handleBooking = async () => {
+  const handleBooking = () => {
     if (!user) return navigate('/login')
-     navigate('/book/:id')
+    navigate(`/space/${id}/book`)
   }
-
-// const handleBooking = async () => {
-//     if (!user) return navigate('/login');
-  
-//     try {
-//       const [startDate, endDate] = selectedDates;
-  
-//       const res = await axiosInstance.post(`/advertiser/book-space/${space._id}`, {
-//         brandingType: space.brandingTypes[0],
-//         startDate,
-//         endDate,
-//         notes: 'Booking from SpaceDetails page',
-//       });
-  
-//       // ✅ Navigate after successful booking
-//     //   navigate(`/book-space/${space._id}`, {
-//     //     state: {
-//     //       bookingId: res.data._id, // agar backend response me _id ya bookingId return hota ho
-//     //       space,
-//     //       startDate,
-//     //       endDate
-//     //     }
-//     //   });
-//     } catch (err) {
-//       alert(err?.response?.data?.message || 'Booking failed');
-//     }
-//   };
-  
 
   if (loading) return <div className="text-center py-10">Loading space...</div>
   if (!space) return <div className="text-center py-10 text-red-500">Space not found</div>
@@ -316,7 +542,7 @@ export default function SpaceDetails() {
         <div className="md:col-span-2 space-y-6">
           <div className="border rounded-xl overflow-hidden">
             <Carousel autoPlay infiniteLoop showThumbs={true} showStatus={false}>
-              {Object.values(space.images).filter(Boolean).map((img, i) => (
+              {Object.values(space.images || {}).filter(Boolean).map((img, i) => (
                 <div key={i} onClick={() => setFullscreenImg(img)} className="cursor-zoom-in">
                   <img src={img} alt={`img-${i}`} className="max-h-[500px] object-cover w-full" />
                 </div>
@@ -379,18 +605,18 @@ export default function SpaceDetails() {
               <p><strong>Min Duration:</strong> 1 month</p>
               <p><strong>Pricing:</strong></p>
               <ul className="list-disc ml-6">
-                {space.suggestedPricing?.map((p, i) => (
-                  <li key={i}>{p.brandingType}: ₹{p.pricePerMonth}/mo</li>
-                )) || 'N/A'}
+                {renderPricing(space.suggestedPricing)}
               </ul>
             </div>
           )}
 
           {tab === 'amenities' && (
             <div className="mt-4 flex flex-wrap gap-2">
-              {space.amenities?.map((item, i) => (
-                <span key={i} className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">{item}</span>
-              )) || 'N/A'}
+              {Array.isArray(space.amenities) && space.amenities.length > 0
+                ? space.amenities.map((item, i) => (
+                  <span key={i} className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">{item}</span>
+                ))
+                : 'N/A'}
             </div>
           )}
 
@@ -410,7 +636,15 @@ export default function SpaceDetails() {
         {/* Right Sidebar */}
         <div className="space-y-6">
           <div className="bg-white p-4 rounded-xl border shadow-sm">
-            <p className="text-xl font-bold text-blue-800">₹{space.suggestedPricing?.[0]?.pricePerMonth || 8000}</p>
+            <p className="text-xl font-bold text-blue-800">
+              ₹{
+                Array.isArray(space.suggestedPricing) && space.suggestedPricing[0]?.pricePerMonth
+                  ? space.suggestedPricing[0].pricePerMonth
+                  : (typeof space.suggestedPricing === "object" && space.suggestedPricing.monthly)
+                  ? space.suggestedPricing.monthly
+                  : 8000
+              }
+            </p>
             <p className="text-sm text-gray-500">per month</p>
             <p className="mt-2 text-sm text-gray-600">Next Available: <strong>2024-02-01</strong></p>
             <p className="text-sm text-gray-600">Min Duration: <strong>1 month</strong></p>

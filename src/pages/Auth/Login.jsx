@@ -115,13 +115,19 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { useLocation } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-
+import { Eye, EyeOff } from "lucide-react";
 import { loginSuccess } from "../../redux/slices/authSlice"
 import { useDispatch } from 'react-redux'
 
 export default function Login() {
+  const location = useLocation();
+  // Prefill from navigate (if available)
+  const [email, setEmail] = useState(location.state?.prefillEmail || "");
+  const [password, setPassword] = useState(location.state?.prefillPassword || "");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [formData, setFormData] = useState({ email: '', password: '' })
@@ -142,19 +148,39 @@ export default function Login() {
 
     try {
       setLoading(true)
-      const res = await axios.post('https://blook-back.onrender.com/api/auth/login', { email, password })
+      const res = await axios.post('http://localhost:5000/api/auth/login', { email, password })
+    
+    //  Change this line to avoid conflict with local formData.email
+const { token, role, userId, fullName, email: userEmail, roleCode } = res.data;
 
-      const { token, user } = res.data
+//  Make user object using correct fields
+const user = { role, userId, fullName, email: userEmail, roleCode };
+dispatch(loginSuccess({ token, user }));
 
-      //  Save to Redux store
-      dispatch(loginSuccess({ token, user }))
+toast.success("Login successful!");
+navigate(`/dashboard/${role}`);
 
-      toast.success('Login successful!')
+
+
+
+//       // const { token, user } = res.data
+//       const { token, role, userId, fullName, email, roleCode } = res.data;
+//       const user = { role, userId, fullName, email, roleCode };
+// dispatch(loginSuccess({ token, user }));
+
+// toast.success("Login successful!");
+// navigate(`/dashboard/${role}`);
+      // console.log("first",res)
+
+      // //  Save to Redux store
+      // dispatch(loginSuccess({ token, user }))
+
+      // toast.success('Login successful!')
       
 
-      setTimeout(() => {
-        navigate(`/dashboard/${user.role}`)
-      }, 500)
+      // setTimeout(() => {
+      //   navigate(`/dashboard/${user.role}`)
+      // }, 500)
     } catch (err) {
       toast.error(err.response?.data?.message || 'Login failed')
     } finally {
@@ -198,7 +224,27 @@ export default function Login() {
               className="w-full border px-3 py-2 rounded"
               placeholder="Enter password"
             />
+            
           </div>
+           {/* <div className="mb-6 relative">
+        <input
+          type={showPassword ? "text" : "password"}
+          // className="input pr-12"
+           className="w-full border bg-slate-200 px-3 py-2 rounded"
+          placeholder="password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          required
+        />
+        <button
+          type="button"
+          className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-700"
+          onClick={() => setShowPassword(s => !s)}
+          tabIndex={-1}
+        >
+          {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
+        </button>
+      </div> */}
 
           <button
             type="submit"

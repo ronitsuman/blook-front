@@ -64,6 +64,8 @@ import CampaignApprovals from './tabs/CampaignApprovals';
 import BlookforceAgents from './tabs/BlookforceAgents';
 import Vendors from './tabs/Vendors';
 import AdvertiserApprovals from './tabs/AdvertiserApprovals';
+import AdminCustomRequirementsPanel from './tabs/CustomRequirmentPaannel';
+import AdminJobsTable from './tabs/AdminJobsTable';
 
 const tabs = [
   'Pending Spaces',
@@ -72,7 +74,9 @@ const tabs = [
   'Pending Campaigns',
   'Blookforce Agents',
   'Pending Vendors',
-  'Advertiser Approvals'
+  'Advertiser Approvals',
+  'Custom Requirments',
+  'Vendor Jobs Table'
 ];
 
 const AdminDashboard = () => {
@@ -94,6 +98,10 @@ const AdminDashboard = () => {
         return <Vendors />;
       case 'Advertiser Approvals':
         return <AdvertiserApprovals/>;
+      case 'Vendor Jobs Table':
+        return <AdminJobsTable/>;
+      case 'Custom Requirments':
+        return <AdminCustomRequirementsPanel/>;
       default:
         return null;
     }

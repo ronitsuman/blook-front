@@ -66,13 +66,13 @@ import { useSelector } from 'react-redux'
 export default function SpaceOwnerDashboard() {
   const navigate = useNavigate()
 
-  // ✅ Grab auth values from Redux
+  //  Grab auth values from Redux
   const { isAuthenticated, user } = useSelector((state) => state.auth)
 
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // ✅ Check if user is logged in and has correct role
+    //  Check if user is logged in and has correct role
     if (!isAuthenticated || !user || user.role !== 'space-owner') {
       navigate('/login')
     } else {

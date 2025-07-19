@@ -4,6 +4,11 @@ import { MapPin, BarChart3, ShieldCheck, Zap } from "lucide-react"
 import Navbar from "../components/Navbar"
 import FeaturedSpaces from "../components/FeatureSpaces"
 import BlookHeat_HomeTeaser from "../components/BlookHeat_HomeTeaser"
+import ListingOptionSection from "../components/ListingOptionSection"
+import IndustriesGrid from "../components/IndustriesGrid"
+import AgencyCTA from "../components/AgencryCTA"
+import NewsletterSignup from "../components/NewsletterSignup"
+import Footer from "../components/Footer"
 
 
 export default function Home() {
@@ -115,10 +120,12 @@ export default function Home() {
     </div>
   </div>
 </section>
-{/* 🏙 Featured Spaces Section */}
+{/*  Featured Spaces Section */}
 
 <FeaturedSpaces/>
-{/* 🔢 Stats Counter Strip */}
+
+
+{/* Stats Counter Strip */}
 <section className="bg-blue-600 text-white py-12 px-4">
   <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
     {[
@@ -134,9 +141,12 @@ export default function Home() {
     ))}
   </div>
 </section>
+<ListingOptionSection/>
+<IndustriesGrid/>
 
 
-{/* 💡 Why Choose Us Section */}
+
+{/*  Why Choose Us Section */}
 <section className="bg-white py-20 px-4">
   <div className="max-w-6xl mx-auto text-center mb-12">
     <h2 className="text-3xl font-bold text-blue-900 mb-4">Why Choose BLookMySpace?</h2>
@@ -188,7 +198,9 @@ export default function Home() {
     ))}
   </div>
 </section>
-{/* 🧭 How It Works Section */}
+
+
+{/*  How It Works Section */}
 <section className="bg-blue-50 py-20 px-4">
   <div className="max-w-6xl mx-auto text-center mb-12">
     <h2 className="text-3xl font-bold text-blue-900 mb-4">How BLookMySpace Works</h2>
@@ -230,7 +242,9 @@ export default function Home() {
   </div>
 </section>
 <BlookHeat_HomeTeaser/>
-{/* ⭐ Testimonials Section */}
+
+
+{/*  Testimonials Section */}
 <section className="bg-white py-20 px-4">
   <div className="max-w-6xl mx-auto text-center mb-12">
     <h2 className="text-3xl font-bold text-blue-900 mb-4">What Our Clients Say</h2>
@@ -239,6 +253,7 @@ export default function Home() {
     </p>
   </div>
 
+ {/* review   */}
   <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
     {[
       {
@@ -276,7 +291,9 @@ export default function Home() {
     ))}
   </div>
 </section>
-{/* 📣 Final CTA Section */}
+
+
+{/*  Final CTA Section */}
 <section className="bg-gradient-to-r from-blue-700 to-purple-700 text-white py-20 px-4 text-center">
   <div className="max-w-4xl mx-auto">
     <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Get Started?</h2>
@@ -289,8 +306,8 @@ export default function Home() {
   </div>
 </section>
 
-{/* 🔗 Footer Section */}
-<footer className="bg-blue-950 text-white py-10 px-4">
+{/*  Footer Section */}
+{/* <footer className="bg-blue-950 text-white py-10 px-4">
   <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
     <div>
       <h3 className="text-xl font-bold mb-3">BLookMySpace</h3>
@@ -316,7 +333,9 @@ export default function Home() {
   <div className="text-center text-xs text-white/60 mt-8">
     © 2025 BLookMySpace.ai. All rights reserved.
   </div>
-</footer>
+</footer> */}
+<NewsletterSignup/>
+<Footer/>
 
 
 

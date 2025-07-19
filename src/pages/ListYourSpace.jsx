@@ -25,7 +25,9 @@ export default function ListYourSpace() {
         </ul>
         <p className="text-sm text-gray-500 mt-8">
           Modular form components coming next </p>
+          
       </div>
+     
 
     </section>
     <ListYourSpaceForm/>

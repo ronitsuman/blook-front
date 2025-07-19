@@ -1199,6 +1199,181 @@
 
 
 
+// import React, { useState } from 'react';
+// import Step1BasicInfo from './Step1BasicInfo';
+// import Step2Features from './Step2Features';
+// import Step3BrandingOptions from './Step3BrandingOptions';
+// import Step4UploadImages from './Step4UploadImages';
+// import Step5PricingAvailability from './Step5PricingAvailability';
+// import Step6TermsAgreement from './Step6HeatMappingCompliance';
+// import Step7ReviewAndSubmit from './Step7ReviewAndTerms';
+
+// export default function ListYourSpaceForm() {
+//   const [step, setStep] = useState(1);
+//   const [formData, setFormData] = useState({
+//     spaceName: '',
+//     description: '',
+//     spaceType: '',
+//     companyName: '',
+//     fullName: '',
+//     phone: '',
+//     email: '',
+//     location: {
+//       lat: '',
+//       lng: '',
+//       address: '',
+//     },
+//     images: {
+//       frontFacade: '',
+//       interiorView: '',
+//       brandingZone: '',
+//       heatMapPhoto: '',
+//       otherPhotos: [],
+//     },
+//     availability: [],
+//     suggestedPrice: '',
+//     footfall: {
+//       weekday: '',
+//       weekend: '',
+//       monthly: '',
+//     },
+//     demographics: {
+//       ageGroups: '',
+//       gender: '',
+//       incomeGroup: '',
+//     },
+//     brandingZones: [],
+//     heatMappingConsent: {
+//       consentGiven: false,
+//       cameraCount: 0,
+//       heatMapProof: '',
+//     },
+//     panNumber: '',
+//     authorizedToMonetize: false,
+//     agreedToTerms: false,
+//     listingType: 'basic', // default
+//     referralCode: '',
+//   });
+
+//   const next = () => setStep((prev) => prev + 1);
+//   const back = () => setStep((prev) => prev - 1);
+
+//   return (
+//     <div>
+//       {step === 1 && (
+//         <Step1BasicInfo formData={formData} setFormData={setFormData} next={next} />
+//       )}
+//       {step === 2 && (
+//         <Step2Features formData={formData} setFormData={setFormData} next={next} back={back} />
+//       )}
+//       {step === 3 && (
+//         <Step3BrandingOptions formData={formData} setFormData={setFormData} next={next} back={back} />
+//       )}
+//       {step === 4 && (
+//         <Step4UploadImages formData={formData} setFormData={setFormData} next={next} back={back} />
+//       )}
+//       {step === 5 && (
+//         <Step5PricingAvailability formData={formData} setFormData={setFormData} next={next} back={back} />
+//       )}
+//       {step === 6 && (
+//         <Step6TermsAgreement formData={formData} setFormData={setFormData} next={next} back={back} />
+//       )}
+//       {step === 7 && (
+//         <Step7ReviewAndSubmit formData={formData} back={back} />
+//       )}
+//     </div>
+//   );
+// }
+
+
+
+
+
+
+
+// import React, { useState } from 'react';
+// import Step1BasicInfo from './Step1BasicInfo';
+// import Step2Features from './Step2Features';
+// import Step3BrandingOptions from './Step3BrandingOptions';
+// import Step4UploadImages from './Step4UploadImages';
+// import Step5PricingAvailability from './Step5PricingAvailability';
+// import Step6TermsAgreement from './Step6HeatMappingCompliance';
+// import Step7ReviewAndSubmit from './Step7ReviewAndTerms';
+// import MockPaymentPage from './Step8Payment';
+// import SuccessModal from './SuccessModal';
+
+// export default function ListYourSpaceForm() {
+//   const [step, setStep] = useState(1);
+//   const [formData, setFormData] = useState({
+//     spaceName: '',
+//     description: '',
+//     spaceType: '',
+//     companyName: '',
+//     fullName: '',
+//     phone: '',
+//     email: '',
+//     location: { lat: '', lng: '', address: '', city: '' },
+//     images: {
+//       frontFacade: '',
+//       interiorView: '',
+//       brandingZone: '',
+//       heatMapPhoto: '',
+//       otherPhotos: [],
+//     },
+//     availability: [],
+//     suggestedPricing: { daily: '', monthly: '' },
+//     footfall: { weekday: '', weekend: '', monthly: '' },
+//     demographics: { ageGroups: '', gender: '', incomeGroup: '' },
+//     brandingZones: [],
+//     heatMapping: { consent: false, cameraCount: 0, cameraTypes: [], cameraViewsAligned: false, trialStatus: '' },
+//     panNumber: '',
+//     authorizedToMonetize: false,
+//     agreedToTerms: false,
+//     listingType: 'basic',
+//     referralCode: '',
+//     bankDetails: { accountHolderName: '', bankName: '', ifscCode: '', accountNumber: '' }
+//   });
+
+//   const next = () => setStep(prev => prev + 1);
+//   const back = () => setStep(prev => prev - 1);
+
+//   return (
+//     <div>
+//       {step === 1 && (
+//         <Step1BasicInfo formData={formData} setFormData={setFormData} next={next} />
+//       )}
+//       {step === 2 && (
+//         <Step2Features formData={formData} setFormData={setFormData} next={next} back={back} />
+//       )}
+//       {step === 3 && (
+//         <Step3BrandingOptions formData={formData} setFormData={setFormData} next={next} back={back} />
+//       )}
+//       {step === 4 && (
+//         <Step4UploadImages formData={formData} setFormData={setFormData} next={next} back={back} />
+//       )}
+//       {step === 5 && (
+//         <Step5PricingAvailability formData={formData} setFormData={setFormData} next={next} back={back} />
+//       )}
+//       {step === 6 && (
+//         <Step6TermsAgreement formData={formData} setFormData={setFormData} next={next} back={back} />
+//       )}
+//       {step === 7 && (
+//         <Step7ReviewAndSubmit formData={formData} back={back} next={next} />
+//       )}
+//       {step === 8 && (
+//         <MockPaymentPage next={next} back={back} />
+//       )}
+//       {step === 9 && (
+//         <SuccessModal />
+//       )}
+//     </div>
+//   );
+// }
+
+
+
+
+//part 2 
 import React, { useState } from 'react';
 import Step1BasicInfo from './Step1BasicInfo';
 import Step2Features from './Step2Features';
@@ -1207,79 +1382,48 @@ import Step4UploadImages from './Step4UploadImages';
 import Step5PricingAvailability from './Step5PricingAvailability';
 import Step6TermsAgreement from './Step6HeatMappingCompliance';
 import Step7ReviewAndSubmit from './Step7ReviewAndTerms';
+import SuccessModal from './SuccessModal';
 
 export default function ListYourSpaceForm() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    spaceName: '',
-    description: '',
-    spaceType: '',
-    companyName: '',
-    fullName: '',
-    phone: '',
-    email: '',
-    location: {
-      lat: '',
-      lng: '',
-      address: '',
-    },
+    spaceName: '', description: '', spaceType: '', companyName: '', fullName: '', phone: '', email: '',
+    location: { lat: '', lng: '', address: '' },
     images: {
-      frontFacade: '',
-      interiorView: '',
-      brandingZone: '',
-      heatMapPhoto: '',
-      otherPhotos: [],
+      frontFacadeFile: null, interiorViewFile: null, brandingZoneFile: null,
+      heatMapPhotoFile: null, otherPhotosFiles: [],
     },
     availability: [],
-    suggestedPrice: '',
-    footfall: {
-      weekday: '',
-      weekend: '',
-      monthly: '',
-    },
-    demographics: {
-      ageGroups: '',
-      gender: '',
-      incomeGroup: '',
-    },
+    suggestedPricing: { daily: '', weekly: '', monthly: '' },
+    footfall: { weekday: '', weekend: '', monthly: '' },
+    demographics: { ageGroups: '', gender: '', incomeGroup: '' },
     brandingZones: [],
-    heatMappingConsent: {
-      consentGiven: false,
-      cameraCount: 0,
-      heatMapProof: '',
-    },
-    panNumber: '',
-    authorizedToMonetize: false,
-    agreedToTerms: false,
-    listingType: 'basic', // default
-    referralCode: '',
+    heatMappingConsent: { consent: false, cameraCount: 0 },
+    panNumber: '', authorizedToMonetize: false, agreedToTerms: false,
+    listingType: 'basic', referralCode: '',
+    bankDetails: { accountHolderName: '', bankName: '', ifscCode: '', accountNumber: '' }
   });
+  const [showSuccess, setShowSuccess] = useState(false);
 
-  const next = () => setStep((prev) => prev + 1);
-  const back = () => setStep((prev) => prev - 1);
+  const next = () => setStep(prev => prev + 1);
+  const back = () => setStep(prev => prev - 1);
 
   return (
     <div>
-      {step === 1 && (
-        <Step1BasicInfo formData={formData} setFormData={setFormData} next={next} />
-      )}
-      {step === 2 && (
-        <Step2Features formData={formData} setFormData={setFormData} next={next} back={back} />
-      )}
-      {step === 3 && (
-        <Step3BrandingOptions formData={formData} setFormData={setFormData} next={next} back={back} />
-      )}
-      {step === 4 && (
-        <Step4UploadImages formData={formData} setFormData={setFormData} next={next} back={back} />
-      )}
-      {step === 5 && (
-        <Step5PricingAvailability formData={formData} setFormData={setFormData} next={next} back={back} />
-      )}
-      {step === 6 && (
-        <Step6TermsAgreement formData={formData} setFormData={setFormData} next={next} back={back} />
-      )}
+      {showSuccess && <SuccessModal />}
+      {step === 1 && <Step1BasicInfo formData={formData} setFormData={setFormData} next={next} />}
+      {step === 2 && <Step2Features formData={formData} setFormData={setFormData} next={next} back={back} />}
+      {step === 3 && <Step3BrandingOptions formData={formData} setFormData={setFormData} next={next} back={back} />}
+      {step === 4 && <Step4UploadImages formData={formData} setFormData={setFormData} next={next} back={back} />}
+      {step === 5 && <Step5PricingAvailability formData={formData} setFormData={setFormData} next={next} back={back} />}
+      {step === 6 && <Step6TermsAgreement formData={formData} setFormData={setFormData} next={next} back={back} />}
       {step === 7 && (
-        <Step7ReviewAndSubmit formData={formData} back={back} />
+        <Step7ReviewAndSubmit
+          formData={formData}
+          back={back}
+          setShowSuccess={setShowSuccess}
+          setStep={setStep}
+        />
       )}
     </div>
   );

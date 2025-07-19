@@ -49,35 +49,91 @@
 //   );
 // }
 
+
+
+
+
+
+// import { useState } from "react";
+// import GoogleMapPicker from "./GoogleMapPicker";
+
+// export default function Step1BasicInfo({ formData, setFormData, next }) {
+//   const [error, setError] = useState("");
+
+//   const handleLocation = (lat, lng, address) => {
+//     setFormData((prev) => ({
+//       ...prev,
+//       location: { lat, lng, address }
+//     }));
+//   };
+//   const handleMapLocation = (lat, lng, address) => {
+//     setFormData({
+//       ...formData,
+//       location: { lat, lng, address },
+//     })
+//   }
+
+
+//   const handleChange = (e) => {
+//     setFormData((prev) => ({
+//       ...prev,
+//       [e.target.name]: e.target.value
+//     }));
+//   };
+
+//   const handleNext = () => {
+//     if (!formData.spaceName || !formData.description || !formData.location?.lat || !formData.location?.lng || !formData.location?.address) {
+//       setError("Please fill all required fields and select location.");
+//       return;
+//     }
+//     next();
+//   };
+
+//   return (
+//     <div className="bg-gradient-to-br from-blue-50 to-purple-100 p-6 rounded-lg shadow-md">
+//       <h3 className="text-xl font-semibold text-blue-800 mb-4">Step 1: Basic Information</h3>
+//       <div className="space-y-4">
+//         <input type="text" name="spaceName" className="w-full p-2 border rounded focus:outline-none" placeholder="Space Name*" value={formData.spaceName || ""} onChange={handleChange} />
+//         <textarea name="description" className="w-full p-2 border rounded focus:outline-none" placeholder="Description*" value={formData.description || ""} onChange={handleChange} />
+//         <input type="text" name="companyName" className="w-full p-2 border rounded focus:outline-none" placeholder="Company Name" value={formData.companyName || ""} onChange={handleChange} />
+//         <input type="text" name="fullName" className="w-full p-2 border rounded focus:outline-none" placeholder="Contact Person" value={formData.fullName || ""} onChange={handleChange} />
+//         <input type="tel" name="phone" className="w-full p-2 border rounded focus:outline-none" placeholder="Phone*" value={formData.phone || ""} onChange={handleChange} />
+//         <input type="email" name="email" className="w-full p-2 border rounded focus:outline-none" placeholder="Email*" value={formData.email || ""} onChange={handleChange} />
+
+//         <div>
+//           <label className="font-medium text-blue-700 mb-1 block">Location (Google Map):</label>
+//           <GoogleMapPicker onLocationSelect={handleMapLocation} />
+
+//           {formData.location?.address && <p className="mt-1 text-sm text-gray-700">Selected: {formData.location.address}</p>}
+//         </div>
+
+//         <input type="text" name="agentCode" className="w-full p-2 border rounded focus:outline-none" placeholder="Agent Code (if any)" value={formData.agentCode || ""} onChange={handleChange} />
+//         <input type="text" name="referralCode" className="w-full p-2 border rounded focus:outline-none" placeholder="Referral Code (if any)" value={formData.referralCode || ""} onChange={handleChange} />
+//       </div>
+//       {error && <div className="text-red-600 my-2 text-sm font-medium">{error}</div>}
+//       <button className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded" onClick={handleNext}>Next</button>
+//     </div>
+//   );
+// }
+
+
+
 import { useState } from "react";
-import GoogleMapPicker from "./GoogleMapPicker";
+import GoogleMapPicker from "./GoogleMapPicker"; // your custom component
 
 export default function Step1BasicInfo({ formData, setFormData, next }) {
   const [error, setError] = useState("");
 
-  const handleLocation = (lat, lng, address) => {
-    setFormData((prev) => ({
-      ...prev,
-      location: { lat, lng, address }
-    }));
-  };
-  const handleMapLocation = (lat, lng, address) => {
-    setFormData({
-      ...formData,
-      location: { lat, lng, address },
-    })
-  }
-
-
   const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleMapLocation = (lat, lng, address) => {
+    setFormData(prev => ({ ...prev, location: { lat, lng, address } }));
   };
 
   const handleNext = () => {
-    if (!formData.spaceName || !formData.description || !formData.location?.lat || !formData.location?.lng || !formData.location?.address) {
+    if (!formData.spaceName || !formData.description || !formData.location?.lat) {
       setError("Please fill all required fields and select location.");
       return;
     }
@@ -85,28 +141,28 @@ export default function Step1BasicInfo({ formData, setFormData, next }) {
   };
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-purple-100 p-6 rounded-lg shadow-md">
-      <h3 className="text-xl font-semibold text-blue-800 mb-4">Step 1: Basic Information</h3>
-      <div className="space-y-4">
-        <input type="text" name="spaceName" className="w-full p-2 border rounded focus:outline-none" placeholder="Space Name*" value={formData.spaceName || ""} onChange={handleChange} />
-        <textarea name="description" className="w-full p-2 border rounded focus:outline-none" placeholder="Description*" value={formData.description || ""} onChange={handleChange} />
-        <input type="text" name="companyName" className="w-full p-2 border rounded focus:outline-none" placeholder="Company Name" value={formData.companyName || ""} onChange={handleChange} />
-        <input type="text" name="fullName" className="w-full p-2 border rounded focus:outline-none" placeholder="Contact Person" value={formData.fullName || ""} onChange={handleChange} />
-        <input type="tel" name="phone" className="w-full p-2 border rounded focus:outline-none" placeholder="Phone*" value={formData.phone || ""} onChange={handleChange} />
-        <input type="email" name="email" className="w-full p-2 border rounded focus:outline-none" placeholder="Email*" value={formData.email || ""} onChange={handleChange} />
-
+    <div className="p-6 bg-white rounded-xl shadow">
+      <h3 className="text-xl font-semibold mb-4">Step 1: Basic Information</h3>
+      <input name="spaceName" value={formData.spaceName} onChange={handleChange} className="w-full mb-2 p-2 border rounded" placeholder="Space Name*" />
+      <textarea name="description" value={formData.description} onChange={handleChange} className="w-full mb-2 p-2 border rounded" placeholder="Description*" />
+      <input name="companyName" value={formData.companyName} onChange={handleChange} className="w-full mb-2 p-2 border rounded" placeholder="Company Name" />
+      <input name="fullName" value={formData.fullName} onChange={handleChange} className="w-full mb-2 p-2 border rounded" placeholder="Contact Person" />
+      <input name="phone" value={formData.phone} onChange={handleChange} className="w-full mb-2 p-2 border rounded" placeholder="Phone*" />
+      <input name="email" value={formData.email} onChange={handleChange} className="w-full mb-2 p-2 border rounded" placeholder="Email*" />
+      <div className="mb-2">
+        {/* <label className="block mb-1">Location (Google Map):</label> */}
+        {/* <GoogleMapPicker onLocationSelect={handleMapLocation} /> */}
         <div>
           <label className="font-medium text-blue-700 mb-1 block">Location (Google Map):</label>
-          <GoogleMapPicker onLocationSelect={handleMapLocation} />
+           <GoogleMapPicker onLocationSelect={handleMapLocation} />
 
-          {formData.location?.address && <p className="mt-1 text-sm text-gray-700">Selected: {formData.location.address}</p>}
+           {formData.location?.address && <p className="mt-1 text-sm text-gray-700">Selected: {formData.location.address}</p>}
         </div>
-
-        <input type="text" name="agentCode" className="w-full p-2 border rounded focus:outline-none" placeholder="Agent Code (if any)" value={formData.agentCode || ""} onChange={handleChange} />
-        <input type="text" name="referralCode" className="w-full p-2 border rounded focus:outline-none" placeholder="Referral Code (if any)" value={formData.referralCode || ""} onChange={handleChange} />
+        
       </div>
-      {error && <div className="text-red-600 my-2 text-sm font-medium">{error}</div>}
-      <button className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded" onClick={handleNext}>Next</button>
+      <input name="referralCode" value={formData.referralCode} onChange={handleChange} className="w-full mb-2 p-2 border rounded" placeholder="Referral Code (optional)" />
+      {error && <div className="text-red-600">{error}</div>}
+      <button onClick={handleNext} className="mt-4 btn-primary">Next</button>
     </div>
   );
 }

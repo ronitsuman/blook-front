@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+ /* Tailwind helper (add to your global css if needed) */
+ .input { @apply w-full border border-gray-300 rounded px-3 py-2 focus:border-blue-400 outline-none transition; }
